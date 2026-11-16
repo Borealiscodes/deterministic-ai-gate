@@ -1,4 +1,4 @@
-examples/sample_ai_output.json# From Exploratory Cognitive Manifolds to Clean-Room Deterministic Gates: Architectural Divergence, Anti-Anthropomorphic Formalism, and Baseline Engineering in Critical Domains
+# From Exploratory Cognitive Manifolds to Clean-Room Deterministic Gates: Architectural Divergence, Anti-Anthropomorphic Formalism, and Baseline Engineering in Critical Domains
 
 **Author:** Borealis S. Hedling (`NDH-RESEARCH-PILOT`)  
 **Date:** November 16, 2026  
