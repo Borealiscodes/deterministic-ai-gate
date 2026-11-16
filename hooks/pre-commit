@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+# Automatically fingerprint staged .txt or .md source documents before commit.
+
+set -e
+
+STAGED_DOCS=$(git diff --cached --name-only --diff-filter=ACM | grep -E '\.(txt|md)$' || true)
+
+if [ -n "$STAGED_DOCS" ]; then
+  mkdir -p .manifests
+  AUTHOR=$(git config user.name || echo "unknown")
+  for FILE in $STAGED_DOCS; do
+    if [ -f "$FILE" ]; then
+      SAFE_NAME=$(echo "$FILE" | tr '/' '_')
+      python3 src/fingerprint.py "$FILE" --author "$AUTHOR" --out ".manifests/${SAFE_NAME}.manifest.json"
+      git add ".manifests/${SAFE_NAME}.manifest.json"
+    fi
+  done
+fi
