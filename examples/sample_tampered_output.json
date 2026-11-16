@@ -1,0 +1,14 @@
+{
+  "entities": ["Master Services Agreement", "Client"],
+  "math": {
+    "base": "12000",
+    "multipliers": ["3/4", "1/10"]
+  },
+  "timeline_edges": [
+    ["Discovery", "Architecture"],
+    ["Architecture", "Discovery"]
+  ],
+  "quotes": [
+    "Client authorizes a base retainer of 15000 units, adjusted by a 3/4 quarterly discount."
+  ]
+}
