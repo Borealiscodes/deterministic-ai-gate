@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org",
+  "title": "DeterministicAIGateExtraction",
+  "description": "Strict JSON contract for Stage 2 LLM text-to-JSON extraction. Do not compute totals, infer dates, or paraphrase quotes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["entities", "quotes"],
+  "properties": {
+    "entities": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Named people, organizations, or items copied directly from source text."
+    },
+    "math": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "required": ["base", "multipliers"],
+      "properties": {
+        "base": {
+          "type": "string",
+          "pattern": "^-?[0-9]+(?:/[1-9][0-9]*|\\.[0-9]+)?$",
+          "description": "Exact starting number or fraction string extracted from text (e.g., '100' or '1/3')."
+        },
+        "multipliers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^-?[0-9]+(?:/[1-9][0-9]*|\\.[0-9]+)?$"
+          },
+          "description": "Ordered list of exact factor strings to multiply on CPU."
+        }
+      }
+    },
+    "timeline_edges": {
+      "type": ["array", "null"],
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": { "type": "string" }
+      },
+      "description": "Chronological [before, after] event pairs explicitly stated in the text."
+    },
+    "quotes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Verbatim paragraph quotes copied character-for-character from the source."
+    }
+  }
+}
